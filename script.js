@@ -19,6 +19,8 @@ function loadAndDisplayColumns() {
     reader.onload = function(event) {
         xmlDoc = parseXML(event.target.result);
 
+        const tagsToRemove = ["LastModifiedDateTime", "FacilityId", "PatientId", "HomeZip", "HomeCountry", "HomeCity", "HomeState", "HomeCounty", "HomeResidences", "DateOfBirth", "Age", "AgeUnits", "IncidentDate", "IncidentTime", "PlaceOfInjuryCode", "InjuryZip", "IncidentCountry", "IncidentCity", "IncidentState", "IncidentCounty", "HospitalArrivalDate", "HospitalArrivalTime", "TraumaSurgeonArrivalDate", "TraumaSurgeonArrivalTime", "PatientUUID", "EdDischargeDate", "EdDischargeTime", "HospitalDischargeDate", "HospitalDischargeTime", "WithdrawalOfLifeSupportingTreatmentDate", "WithdrawalOfLifeSupportingTreatmentTime", "NationalProviderIdentifier" ]; // Replace with your desired tags
+
         // Extract unique element names from the XML
         const allElements = xmlDoc.getElementsByTagName('*');
         const uniqueElementNames = [...new Set(Array.from(allElements).map(el => el.nodeName))];
@@ -34,6 +36,11 @@ function loadAndDisplayColumns() {
             checkbox.type = 'checkbox';
             checkbox.value = name;
             checkbox.id = 'checkbox_' + name;
+            if (tagsToRemove.some(item => item.toLowerCase() === name.toLowerCase())){
+                checkboxDiv.style.backgroundColor = 'yellow'
+                checkbox.checked = true
+                checkbox.disabled = true
+            }
         
             const label = document.createElement('label');
             label.htmlFor = 'checkbox_' + name;
