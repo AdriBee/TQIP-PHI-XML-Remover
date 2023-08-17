@@ -54,7 +54,7 @@ function loadAndDisplayColumns() {
             checkboxDiv.appendChild(label);     // Append label to the div
             container.appendChild(checkboxDiv); // Append the div to the container
         }
-        autoRemoveDiv.textContent = 'Automatically Selected Columns: ' + removedColumns.join(', ');
+        autoRemoveDiv.textContent = 'Automatically Selected Columns to be DELETED: ' + removedColumns.join(', ');
         autoRemoveDiv.style.display = 'block';  // Make it visible
         showColumns.style.display = 'block';
         
