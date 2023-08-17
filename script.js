@@ -116,17 +116,17 @@ function removeSelectedColumns() {
     });
 
     updateSuccessMessage(checkboxes);
-    updateModifiedColumnsList();
+    // updateModifiedColumnsList();
 
-    const table = nodeToTable(xmlDoc);
-    const outputDiv = document.getElementById('output');
-    outputDiv.innerHTML = ''; // Clear previous content
+    // const table = nodeToTable(xmlDoc);
+    // const outputDiv = document.getElementById('output');
+    // outputDiv.innerHTML = ''; // Clear previous content
 
-    if (table) {
-        outputDiv.appendChild(table);
-    } else {
-        outputDiv.textContent = 'No valid rows to display.';
-    }
+    // if (table) {
+    //     outputDiv.appendChild(table);
+    // } else {
+    //     outputDiv.textContent = 'No valid rows to display.';
+    // }
 
     modifiedXML = serializeXML(xmlDoc);
 }
