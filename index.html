@@ -27,10 +27,11 @@
         display: flex;
         flex-wrap: wrap;
         gap: 15px; /* Creates a small gap between each checkbox-label pair */
+        display: none; /* By default, the message is hidden */
       }
 
       #removeButton {
-        margin-top: 80px; /* Adjust the value to your preference */
+        margin-top: 15px; /* Adjust the value to your preference */
       }
 
       .checkboxItem {
@@ -102,6 +103,15 @@
         margin-top: 5px;
         margin-bottom: 5px;
       }
+      #autoRemoveList {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: #e8ffe8; /* Light green background for success message */
+        border: 1px solid #a2d5a2; /* Green border */
+        border-radius: 5px; /* Rounded edges for aesthetic appeal */
+        display: none; /* By default, the message is hidden */
+      }
       #successMessage {
         margin-top: 15px;
         margin-bottom: 15px;
@@ -109,6 +119,9 @@
         background-color: #e8ffe8; /* Light green background for success message */
         border: 1px solid #a2d5a2; /* Green border */
         border-radius: 5px; /* Rounded edges for aesthetic appeal */
+        display: none; /* By default, the message is hidden */
+      }
+      #showColumnsDiv{
         display: none; /* By default, the message is hidden */
       }
       .subtitle {
@@ -137,6 +150,11 @@
       <input type="file" id="xmlInput" onchange="loadAndDisplayColumns()" />
     </label>
 
+    <div id="autoRemoveList"></div>
+    <div id="showColumnsDiv">
+      <input type="checkbox" id="showColumnsCheckbox" onchange="toggleColumnsContainer()" />
+      <label id="showColumnsLabel" for="showColumnsCheckbox">Choose additional/see all columns</label>
+    </div>
     <div id="columnsContainer"></div>
 
     <button id="removeButton" onclick="removeSelectedColumns()">

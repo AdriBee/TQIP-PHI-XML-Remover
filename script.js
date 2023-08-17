@@ -18,6 +18,8 @@ function loadAndDisplayColumns() {
 
     reader.onload = function(event) {
         xmlDoc = parseXML(event.target.result);
+        const autoRemoveDiv = document.getElementById('autoRemoveList');
+        const showColumns = document.getElementById('showColumnsDiv');
 
         const tagsToRemove = ["LastModifiedDateTime", "FacilityId", "PatientId", "HomeZip", "HomeCountry", "HomeCity", "HomeState", "HomeCounty", "HomeResidences", "DateOfBirth", "Age", "AgeUnits", "IncidentDate", "IncidentTime", "PlaceOfInjuryCode", "InjuryZip", "IncidentCountry", "IncidentCity", "IncidentState", "IncidentCounty", "HospitalArrivalDate", "HospitalArrivalTime", "TraumaSurgeonArrivalDate", "TraumaSurgeonArrivalTime", "PatientUUID", "EdDischargeDate", "EdDischargeTime", "HospitalDischargeDate", "HospitalDischargeTime", "WithdrawalOfLifeSupportingTreatmentDate", "WithdrawalOfLifeSupportingTreatmentTime", "NationalProviderIdentifier" ]; // Replace with your desired tags
 
@@ -28,6 +30,7 @@ function loadAndDisplayColumns() {
         // Create checkboxes for each unique element name
         const container = document.getElementById('columnsContainer');
         container.innerHTML = '';
+        let removedColumns = []
         for (const name of uniqueElementNames) {
             const checkboxDiv = document.createElement('div'); // Create a new div for each checkbox-label pair
             checkboxDiv.classList.add('checkboxItem'); // Add a class for styling
@@ -40,6 +43,7 @@ function loadAndDisplayColumns() {
                 checkboxDiv.style.backgroundColor = 'yellow'
                 checkbox.checked = true
                 checkbox.disabled = true
+                removedColumns.push(name)
             }
         
             const label = document.createElement('label');
@@ -50,12 +54,27 @@ function loadAndDisplayColumns() {
             checkboxDiv.appendChild(label);     // Append label to the div
             container.appendChild(checkboxDiv); // Append the div to the container
         }
+        autoRemoveDiv.textContent = 'Automatically Selected Columns: ' + removedColumns.join(', ');
+        autoRemoveDiv.style.display = 'block';  // Make it visible
+        showColumns.style.display = 'block';
         
         fileNameDisplay.textContent = ` (${fileInput.files[0].name})`;
     }
 
     reader.readAsText(fileInput.files[0]);
 }
+
+function toggleColumnsContainer() {
+  var columnsContainer = document.getElementById("columnsContainer");
+  var showColumnsCheckbox = document.getElementById("showColumnsCheckbox");
+
+  if (showColumnsCheckbox.checked) {
+    columnsContainer.style.display = "block";
+  } else {
+    columnsContainer.style.display = "none";
+  }
+}
+
 
 function nodeToTable(node) {
     // Base case: if the node is a text node and has non-whitespace content, return its text
