@@ -1,5 +1,5 @@
 
-# XML PHI Removal Tool
+# TQIP PHI XML Remover
 
 This tool is designed to clean Protected Health Information (PHI) from XML files, specifically targeting Trauma Quality Improvement Program (TQIP) files. It runs entirely offline within your web browser, ensuring that data remains local and secure.
 
